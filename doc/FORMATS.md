@@ -167,7 +167,7 @@ different internally (encrypted, different versions, etc) and not always can be 
   - Codecs: PSX
 - **xa.c**
   - Sony XA header [*XA*]
-  - *xa*: `.xa .str .pxa .grn .an2 .no .(extensionless) .xai .ixa`
+  - *xa*: `.xa .str .pxa .grn .an2 .no .(extensionless) .xai .ixa .xap`
   - Codecs: XA8 XA
 - **rxws.c**
   - Sony RXWS header [*RXWS*]
@@ -1829,6 +1829,10 @@ different internally (encrypted, different versions, etc) and not always can be 
   - (container)
   - *crid*: `.usm`
     - Subfiles: *adx hca*
+- **plug.c**
+  - (container)
+  - *plug*: `.wem`
+    - Subfiles: *adm3 bkhd_fx*
 - **mus_acm.c**
   - InterPlay MUS ACM header [*MUS_ACM*]
   - *mus_acm*: `.mus`

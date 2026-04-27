@@ -732,9 +732,7 @@ static void print_usage(const char* progname, bool is_help) {
         "    -B N        Use an audio buffer of N kilobytes [%d]\n"
         "    -@ LSTFILE  Read playlist from LSTFILE\n"
         "\n"
-        #ifndef WIN32   //libao uses fopen(..., "w") instead of "wb" so any 0x0a (\n) becomes 0x0d0a (\r\n)...
         "    -o OUTFILE  Set output filename for a file driver specified with -D\n"
-        #endif
         "    -m          Print metadata and playback progress\n"
         "    -s N        Play subsong N, if the format supports multiple subsongs\n"
         "    -S N        Play up to end subsong N (set 0 for 'all')\n"
@@ -862,6 +860,10 @@ again_opts:
                 break;
             case 'o':
                 out_filename = optarg;
+#if WIN32
+                // libao uses fopen(..., "w") instead of "wb" so any 0x0a (\n) becomes 0x0d0a (\r\n)...
+                _set_fmode(_O_BINARY); // will break "r" but shouldn't be used that much
+#endif
                 break;
             case 'h':
                 print_usage(argv[0], true);
